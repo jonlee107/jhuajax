@@ -1,0 +1,134 @@
+    body {
+        font-size: 16px;
+        background-color: #ffa500;
+        font-family: 'Oxygen', sans-serif;
+        padding: 10px;
+    }
+
+    /********** Base styles **********/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+      margin: 10px;
+      text-align: center;
+  }
+
+  .content {
+    top: 20px;
+    position: relative;
+    margin: 10px 10px 25px 10px;
+    padding: 10px;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .content:hover {
+    cursor: ew-resize;
+    overflow: auto;
+  }
+
+  .titles {
+      border: 1px solid black;
+      color: #FFFFFF;
+      position: absolute;
+      float: right;
+      right: 0; 
+      top: 0;
+  }
+
+#chicken {
+    background-color: #A52A2A;
+}
+
+#beef {
+    background-color: #11AAAA;
+}
+
+#sushi {
+    background-color: #012345;
+}
+
+section {
+    position: relative;
+    background-color: #D3D3D3;
+    color: #012345;
+    border: 1px solid black;
+}
+
+/* Simple Responsive Framework. */
+.row {
+  width: 100%;
+}
+
+/********** Desktop view **********/
+@media (min-width: 992px) {
+    .col-lg-4 {
+        float: left;
+        width: 31%;
+        margin: 1%;
+    }
+
+    .visible-xs {
+        display: none;
+    }
+
+    .mobiletitle {
+        display: none;
+    }
+}
+
+/********** Tablet view **********/
+@media (min-width: 768px) and (max-width: 991px) {
+    .col-md-6 {
+        float: left;
+        width: 48%;
+        margin: 1%;
+    }
+    .col-md-12 {
+        float: left;
+        width: 98%;
+        margin: 1%;
+    }
+
+    .visible-xs {
+        display: none;
+    }
+
+    .mobiletitle {
+        display: none;
+    }
+}
+
+/********** Mobile view **********/
+@media (max-width: 767px) {
+    .col-sm-12 {
+        float: left;
+        width: 95%;
+        margin: 1%;
+    }
+
+    .titles {
+        display: none;
+    }
+
+    .visible-xs {
+        font-family: "Times New Roman", Georgia, Serif;
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .visible-md-lg {
+        display: none;
+    }
+
+    .mobiletitle{
+        border: 1px solid black;
+        color: #FFFFFF;
+        width: 100%
+        text-align: center;
+    }
+}
