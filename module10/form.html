@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="SimpleFormsApp">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Simple Form Validation</title>
+  </head>
+  <body ng-controller="RegistrationController as reg">
+    <form name='regForm' novalidate>
+      <input type="text" name="firstname" placeholder="First Name"
+        ng-model="reg.user.firstname"
+        required>
+        {{ reg.user.firstname }}
+        <span
+          ng-if="regForm.firstname.$error.required && regForm.firstname.$touched">
+          First name is required.
+        </span>
+        <br>
+
+      <input type="text" name="lasttname" placeholder="Last Name"
+        ng-model="reg.user.lastname"
+        required>
+        {{ reg.user.lastname }}
+        <span
+          ng-if="regForm.lastname.$error.required && regForm.lastname.$touched">
+          Last name is required.
+        </span>
+        <br>
+
+      <input type="email" name="email" placeholder="Email"
+        ng-model="reg.user.email"
+        required>
+        {{ reg.user.email }}
+        <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+          Must be a valid email address: handle@domain format.
+        </span>
+        <br>
+
+      <input type="text" name="phone" placeholder="Phone ###-###-####"
+        ng-model="reg.user.phone"
+        required
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        {{ reg.user.phone }}
+        <span ng-if="regForm.phone.$error.required && regForm.phone.$touched">
+          Phone is required.
+        </span>
+        <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+          Phone must be in the format ###-###-####.
+        </span>
+        <br>
+
+      <input type="text" name="favdish" placeholder="Favorite Dish"
+        ng-model="reg.user.favdish"
+        required>
+        {{ reg.user.favdish}}
+        <span ng-if="regForm.favdish.$error.required && regForm.favdish.$touched">
+          Favorite dish is required.
+        </span>
+        <br>
+
+      <button
+        ng-disabled="regForm.$invalid"
+        ng-click="reg.submit()">Submit</button>
+    </form>
+
+    <div id="info" ng-if="reg.completed">
+      First name: {{ reg.user.firstname}} <br>
+      Last name: {{ reg.user.lastname}} <br>
+      Email: {{ reg.user.email}} <br>
+      Phone: {{ reg.user.phone }} <br>
+      Favorite dish: {{ reg.user.favdish }}
+    </div>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="src/app.js"></script>
+
+  </body>
+</html>
