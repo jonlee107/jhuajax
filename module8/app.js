@@ -7,18 +7,9 @@
 
 	NarrowItDownController.$inject = ['MenuSearchService'];
 	function NarrowItDownController(MenuSearchService) {
-		var listToBuy = this;
-    	listToBuy.items = ShoppingListCheckOffService.getItemsToBuy();
-    	listToBuy.buyItem = function (itemIndex) {
-	      	try
-	      	{
-	        	ShoppingListCheckOffService.buyItem(itemIndex);
-	      	}
-	      	catch(error)
-	      	{
-	        	listToBuy.errorMessage = error.message;
-		    }
-    	}
+		var found = this;
+    	
+    	MenuSearchService.getMatchedMenuItems();
   	}
 
 
