@@ -1,41 +1,52 @@
-(function () {
-	'use strict';
+(function() {
+        'use strict';
 
-	angular.module('NarrowItDownApp', [])
-	.controller('NarrowItDownController', NarrowItDownController)
-	.service('MenuSearchService', MenuSearchService);
+        angular.module('NarrowItDownApp', [])
+            .controller('NarrowItDownController', NarrowItDownController)
+            .service('MenuSearchService', MenuSearchService)
+            .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
-	NarrowItDownController.$inject = ['MenuSearchService'];
-	function NarrowItDownController(MenuSearchService) {
-		var found = this;
-    	
-    	MenuSearchService.getMatchedMenuItems();
-  	}
+        NarrowItDownController.$inject = ['MenuSearchService'];
+        function NarrowItDownController(MenuSearchService) {
+            var found = this;
+            found.searchTerm = "";
+            //found.matchedItems = MenuSearchService.getMatchedMenuItems();
 
+            var promise = MenuSearchService.getMatchedMenuItems();
+			// use the then function	
+            promise.then(function (response) {
+            	var foundItems = [];
 
-	function MenuSearchService() {
-		var service = this;
+                // match all of the ones whose description matches search term
+            	for (var i = 0; i < response.data.menu_items.length; i++) {
+            		if (response.data.menu_items[i].description.search(found.searchTerm) != -1) {
+            			foundItems.push(response.data.menu_items[i]);
+            		}
+            	}
+            	found.foundItems = foundItems;
+            	return foundItems;
+            }
 
-		service.getMatchedMenuItems = function(searchTerm) {
-			// reach out to server to retrieve the list of menu items
+            function removeItem() {
 
-			// match all of the ones whose description matches search term
+            }
+        }
 
-			// return list (wrapped in a promise)
-			// use the then function
-
-			return $http(...).then(function (result) {
-				//process result and only keep items that match
-
-
-				var foundItems...
-
-				// return processed items
-				return foundItems;
-
-				//
-			}
-		};
-	}
-
-})();
+        MenuSearchService.$inject = ['$http', 'ApiBasePath']
+        function MenuSearchService($http, ApiBasePath) {
+            var service = this;
+				
+            // reach out to server to retrieve the list of menu items
+            service.getMatchedMenuItems = function() {
+                var response = $http({
+                    method = "GET",
+                    url: (ApiBasePath + "/menu_items.json")
+                    params: {
+                    	//category
+                    }
+                });
+				
+				// return list (wrapped in a promise)
+                return reponse;
+            };
+        })();
