@@ -1,0 +1,47 @@
+<div id="main-content" class="container">
+  <h2>Sign Up</h2>
+  <form name='signupForm' novalidate>
+    <input type="text" name="firstname" placeholder="First Name" ng-model="signupCtrl.firstname" required>
+      {{ signupCtrl.firstname }}
+      <span
+        ng-if="signupForm.firstname.$error.required && signupForm.firstname.$touched">
+        First name is required.
+      </span>
+      <br>
+
+    <input type="text" name="lastname" placeholder="Last Name" ng-model="signupCtrl.lastname" required>
+      {{ signupCtrl.lastname }}
+      <span
+        ng-if="signupForm.lastname.$error.required && signupForm.lastname.$touched">
+        Last name is required.
+      </span>
+      <br>
+
+    <input type="email" name="email" placeholder="Email" ng-model="signupCtrl.email" required>
+      {{ signupCtrl.email }}
+      <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+        Must be a valid email address: handle@domain format.
+      </span>
+      <br>
+
+    <input type="text" name="phone" placeholder="Phone ###-###-####" ng-model="signupCtrl.phone" required
+      pattern="(\d{3})-(\d{3})-(\d{4})">
+      {{ signupCtrl.phone }}
+      <span ng-if="signupForm.phone.$error.required && signupForm.phone.$touched">
+        Phone is required.
+      </span>
+      <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+        Phone must be in the format ###-###-####.
+      </span>
+      <br>
+
+    <input type="text" name="favdish" placeholder="Favorite Dish" ng-model="signupCtrl.favdish" required>
+      {{ signupCtrl.favdish}}
+      <span ng-if="signupForm.favdish.$error.required && signupForm.favdish.$touched">
+        Favorite dish is required.
+      </span>
+      <br>
+
+    <button ng-disabled="signupForm.$invalid" ng-click="signupForm.submit()">Submit</button>
+  </form>
+</div>

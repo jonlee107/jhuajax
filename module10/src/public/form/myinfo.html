@@ -1,0 +1,13 @@
+<div class="container">
+    <div id="info" ng-if="signupCtrl.completed">
+      First name: {{ signupCtrl.firstname}} <br>
+      Last name: {{ signupCtrl.lastname}} <br>
+      Email: {{ signupCtrl.email}} <br>
+      Phone: {{ signupCtrl.phone }} <br>
+      Favorite dish: {{ signupCtrl.favdish }}
+    </div>
+
+    <div ng-hide="signupCtrl.regCompleted">
+      Not Signed Up Yet. <a href="#/signup">Sign Up!</a>
+    </div>
+</div>
